@@ -1,0 +1,31 @@
+services:
+  python-learning:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: python-learning-dev
+    image: python-learning:latest
+    volumes:
+      - .:/workspace
+      - /workspace/__pycache__
+    environment:
+      - PYTHONUNBUFFERED=1
+    stdin_open: true
+    tty: true
+    working_dir: /workspace
+
+  # Optional: Jupyter notebook service for interactive learning
+  jupyter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: python-learning-jupyter
+    image: python-learning:latest
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/workspace
+    environment:
+      - PYTHONUNBUFFERED=1
+    working_dir: /workspace
+    command: jupyter notebook --ip=0.0.0.0 --allow-root --no-browser

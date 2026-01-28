@@ -21,7 +21,8 @@ docker compose exec python-learning bash
 #### Run Jupyter Notebook for interactive learning:
 ```bash
 docker compose up -d jupyter
-# Access at http://localhost:8888
+# Find the url in the below command output
+docker compose logs jupyter
 ```
 
 ### Using Docker directly
